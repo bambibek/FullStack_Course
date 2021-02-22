@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 
+
 const Statistics = (props) => {
   if (!props.good && !props.neutral && !props.bad) {
     return (<p>No feedback given.</p>)
@@ -10,15 +11,29 @@ const Statistics = (props) => {
 
   return (
     <div>
-      <p>Good: {props.good}</p>
-      <p>Neutral: {props.neutral}</p>
-      <p>Bad: {props.bad}</p>
-      <p> All: {addition(props.good, props.neutral, props.bad)}</p>
-      <p>Average : {average(props.good, props.neutral, props.bad)}</p>
-      <p> Positive : {positive(props.good, props.neutral, props.bad)}</p>
+      <table>
+        <tbody>
+          <Statistic text="good" value={props.good} />
+          <Statistic text="neutral" value={props.neutral} />
+          <Statistic text="bad" value={props.bad} />
+          <Statistic text="All" value={addition(props.good, props.neutral, props.bad)} />
+          <tr><td> Average</td><td>{average(props.good, props.neutral, props.bad)}</td></tr>
+          <tr><td> Positive</td><td>{positive(props.good, props.neutral, props.bad)}</td></tr></tbody>
+      </table>
     </div>
   )
 }
+const Statistic = (props) => {
+  return (
+
+    <tr>
+      <td>{props.text}</td>
+      <td>{props.value}</td>
+    </tr>
+
+  )
+}
+
 
 const addition = (good, neutral, bad) => {
   const add = good + neutral + bad
