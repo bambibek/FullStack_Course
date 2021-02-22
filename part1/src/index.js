@@ -1,5 +1,65 @@
-import React from 'react'
+
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+
+const App = () => {
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  const handleGoodClick = () => {
+    const click = good + 1
+    setGood(click)
+
+  }
+  const handleNeutralClick = () => {
+    const click = neutral + 1
+    setNeutral(click)
+  }
+  const handleBadClick = () => {
+    const click = bad + 1
+    setBad(click)
+  }
+  const addition = () => {
+    const add = good + neutral + bad
+    return add
+  }
+  const average = () => {
+    return (addition() / 3)
+  }
+  const positive = () => {
+    const positive = (good / addition()) * 100
+    return positive
+  }
+
+  return (
+    <div>
+      <h1>give feedback</h1>
+      <button onClick={handleGoodClick}>good</button>
+      <button onClick={handleNeutralClick}>neutral</button>
+      <button onClick={handleBadClick}>bad</button>
+      <h1>statistics</h1>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p> All: {addition()}</p>
+      <p>Average : {average()}</p>
+      <p> Positive : {positive()}</p>
+    </div>
+  )
+}
+
+ReactDOM.render(<App />,
+  document.getElementById('root')
+)
+
+
+/*
+import React, {useState} from 'react'
+
+import ReactDOM from 'react-dom'
+//import { useState } from 'react'
 
 
 const Header = (props) => {
@@ -39,6 +99,7 @@ const Total = (props) => {
 }
 //1.5
 const App = () => {
+
   const course = {
     name: 'Half Stack application development',
     parts: [
@@ -54,7 +115,9 @@ const App = () => {
         name: 'State of a component',
         exercises: 14
       }
+
     ]
+
   }
 
   return (
@@ -66,8 +129,7 @@ const App = () => {
   )
 }
 
-
-/*1.4
+//1.4
 const App = () => {
   const course = 'Half Stack application development'
   const parts = [
@@ -92,9 +154,9 @@ const App = () => {
       <Total exercises={parts} />
     </div>
   )
-}*/
+}
 
-/* part1.3
+// part1.3
 const App = () => {
   const course = 'Half Stack application development'
   const part1 = {
@@ -122,11 +184,11 @@ const App = () => {
 
 
 }
-*/
 
 
 
-/* 1.1- 1.2
+
+// 1.1- 1.2
 const App = () => {
   const course = 'Half Stack application development'
   const part1 = 'Fundamentals of React'
@@ -144,6 +206,7 @@ const App = () => {
 
     </div>
   )
-}*/
+}
 
 ReactDOM.render(<App />, document.getElementById('root'))
+*/
